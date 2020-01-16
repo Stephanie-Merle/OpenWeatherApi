@@ -1,3 +1,8 @@
+# Project
+
+Weather App using 5 day weather forecast & Current weather data API from OpenWeather.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
