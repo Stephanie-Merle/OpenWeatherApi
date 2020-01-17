@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import WeatherCard from './WeatherCard';
 import WeatherDay from './WeatherDay';
+import WeatherMainCard from './WeatherMainCard'
+
 
 const WeatherWeek = ({ id }) => {
 	const [ city, setCity ] = useState(); // To store the city name
@@ -10,6 +12,7 @@ const WeatherWeek = ({ id }) => {
 	const [ dataToday, setDataToday ] = useState(); 
 	const [ today, setToday ] = useState(); 
 	const [ week, setWeek ] = useState([]); // Array with 1 Object per day
+	const [ selected, setSelected ] = useState(); // Array with 1 Object per day
 
 	// fetching weather data for 5 days, 8 records per day
 	const fetchingData = async () => {
@@ -24,8 +27,9 @@ const WeatherWeek = ({ id }) => {
 			console.log(err);
 			setIsLoading(false);
 		}
-    };
-    
+	};
+	console.log(data)
+    // fetching data for today
     const fetchingTodayData = async () => {
 		try {
 			const url = `http://api.openweathermap.org/data/2.5/weather?id=${id}&units=metric&lang=fr&appid=${process.env
@@ -42,7 +46,8 @@ const WeatherWeek = ({ id }) => {
 	const getDataPerDay = () => {
         // We get all data for specific field
         let dateToday = data[0].dt_txt.slice(0, 10) // We get "day one" from the API
-        setToday(dateToday);
+		setToday(dateToday);
+		setSelected(dateToday)
         const date = [];
 		const min = [];
 		const max = [];
@@ -63,7 +68,8 @@ const WeatherWeek = ({ id }) => {
             hum = hum.reduce((currentSum, val) => currentSum + val);
             
 			const day = {
-                date: date[i * n + tmr],
+				date: date[i * n + tmr],
+				dt: data[i * n + tmr + 4].dt,
                 icon: data[i * n + tmr + 4].weather[0].icon, // getting icon for the day
                 description: data[i * n + tmr + 4].weather[0].description, // getting icon for the day
 				temp_min: Math.round(temp_min[0]),
@@ -75,7 +81,7 @@ const WeatherWeek = ({ id }) => {
 			setWeek(newWeek);
 		}
 	};
-
+console.log(week)
 	useEffect(() => {
         fetchingData();
         fetchingTodayData();
@@ -90,18 +96,17 @@ const WeatherWeek = ({ id }) => {
 		[ data ]
 	);
 
-console.log("week",week)
-
 	return ( 
 		<>
 			{isLoading ? null : (
 				<>
 				<div className="city">{city}</div>
+				<WeatherMainCard date={selected} data={data} />
                 <div className="weatherWeek">
 				<div className="weekContainer">
-					<WeatherDay today={today} dataToday={dataToday} week={week}  />
+					<WeatherDay today={today} dataToday={dataToday} week={week} selected={selected} setSelected={setSelected} />
 					{week.map((el) => 
-					<WeatherCard el={el} />
+					<WeatherCard el={el} key={el.date} selected={selected} setSelected={setSelected} />
                     )}
 					</div>
 				</div>

@@ -1,7 +1,11 @@
 # Project
 
 Weather App using 5 day weather forecast & Current weather data API from OpenWeather.
+You need to create a .env file with your key to run this project.
 
+<div style="display:flex; margin:auto">
+<img src="./src/assets/preview.png" width="100%" height="100%" title="wide-screen">
+</div>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

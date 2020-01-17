@@ -1,27 +1,52 @@
 .App {
 	text-align: center;
-	padding: 5em 2em;
+	padding: 0 2em;
 }
 .weatherCard{
 	width: fit-content;
 	min-width: 120px;
 	height: 100%;
 	font-size: .8rem;
-	padding: 1em 2em;
-	margin: .5em;
+	padding: 1em 1.5em;
+	margin: 2em auto;
 	border: 1px rgb(201, 199, 199) solid;
 	box-shadow: 1px 1px 5px  rgb(104, 103, 103) ;
+}
+.weatherCard:hover{
+	background-color: rgb(217, 232, 233);
 }
 .weatherWeek{
 	display: flex;
 }
 .weekContainer{
 	display: flex;
+	justify-content: center;
 	width: 100%;
 	height: fit-content;
-	justify-content: center;
 }
 .city{
 	font-size: 2rem;
-	margin: 1em auto;
+	margin: .5em auto;
+}
+.weatherMainCard{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 280px;
+}
+.displayContainer{
+	display: flex;
+	width: 100%;
+	background-color: rgb(225, 232, 233);
+	justify-content: space-between;
+}
+.card{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	
+}
+.card p{
+	margin: .2em auto;
 }

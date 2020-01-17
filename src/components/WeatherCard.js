@@ -1,8 +1,11 @@
 import React from 'react';
+import Day from './Day';
 
-const weatherCard = ({el}) => {
+const WeatherCard = ({el, setSelected, selected}) => {
+    
     return(
-        <div className="weatherCard" key={el.date}>
+        <div className="weatherCard" style={selected===el.date? {backgroundColor: "rgb(217, 232, 233)"}: null} onClick={()=> setSelected(el.date)}>
+                    <p><Day dt={el.dt}/></p>
                     <p>{el.date}</p>
                     <img src={`http://openweathermap.org/img/wn/${el.icon}@2x.png`} />
                     <p>{el.description}</p>
@@ -12,4 +15,4 @@ const weatherCard = ({el}) => {
                     </div>
     )
 }
-export default weatherCard;
+export default WeatherCard;
