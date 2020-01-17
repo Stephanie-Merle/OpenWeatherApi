@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import WeatherCard from './WeatherCard';
+import WeatherDay from './WeatherDay';
 
 const WeatherWeek = ({ id }) => {
 	const [ city, setCity ] = useState(); // To store the city name
@@ -12,7 +14,7 @@ const WeatherWeek = ({ id }) => {
 	// fetching weather data for 5 days, 8 records per day
 	const fetchingData = async () => {
 		try {
-			const url = `http://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=${process.env
+			const url = `http://api.openweathermap.org/data/2.5/forecast?id=${id}&lang=fr&units=metric&appid=${process.env
 				.REACT_APP_OPENWEATHER_KEY}`;
             const res = await axios.get(url);
 			setCity(res.data.city.name);
@@ -26,7 +28,7 @@ const WeatherWeek = ({ id }) => {
     
     const fetchingTodayData = async () => {
 		try {
-			const url = `http://api.openweathermap.org/data/2.5/weather?id=${id}&appid=${process.env
+			const url = `http://api.openweathermap.org/data/2.5/weather?id=${id}&units=metric&lang=fr&appid=${process.env
 				.REACT_APP_OPENWEATHER_KEY}`;
             const res = await axios.get(url);
             setDataToday(res.data);
@@ -46,10 +48,10 @@ const WeatherWeek = ({ id }) => {
 		const max = [];
 		const humidity = [];
         data.map((el) => date.push(el.dt_txt.slice(0, 10)));
-        const tmr = date.findIndex(el => el !== dateToday) // start collecting data for day 2
+        const tmr = date.findIndex(el => el !== dateToday) // to start collecting data from the second day
         const n = 8; // 8 values per day
-		data.map((el) => min.push(el.main.temp_min));
-		data.map((el) => max.push(el.main.temp_max));
+		data.map((el) => min.push(Math.round(el.main.temp_min)));
+		data.map((el) => max.push(Math.round(el.main.temp_max)));
         data.map((el) => humidity.push(el.main.humidity));
         
 		for (let i = 0; i < 4; i++) {
@@ -64,9 +66,9 @@ const WeatherWeek = ({ id }) => {
                 date: date[i * n + tmr],
                 icon: data[i * n + tmr + 4].weather[0].icon, // getting icon for the day
                 description: data[i * n + tmr + 4].weather[0].description, // getting icon for the day
-				temp_min: temp_min[0],
-				temp_max: temp_max[0],
-				humidity: hum /len // average humidity for the day
+				temp_min: Math.round(temp_min[0]),
+				temp_max: Math.round(temp_max[0]),
+				humidity: Math.round(hum /len) // average humidity for the day
 			};
 			const newWeek = week;
 			newWeek.push(day);
@@ -91,30 +93,21 @@ const WeatherWeek = ({ id }) => {
 console.log("week",week)
 
 	return ( 
-		<div>
-			WeatherWeek.js
+		<>
 			{isLoading ? null : (
-                <div>
-					{city}
-                    <p>date: {today}</p>
-                    <img src={`http://openweathermap.org/img/wn/${dataToday.weather[0].icon}@2x.png`} />
-                    <p>weather: {dataToday.weather[0].description}</p>
-                    <p>temp_min: {dataToday.main.temp_min}</p>
-                    <p>temp_max: {dataToday.main.temp_max}</p>
-                    <p>humidity: {dataToday.main.humidity}</p>
+				<>
+				<div className="city">{city}</div>
+                <div className="weatherWeek">
+				<div className="weekContainer">
+					<WeatherDay today={today} dataToday={dataToday} week={week}  />
 					{week.map((el) => 
-                    <div key={el.date}>
-                    <p>date: {el.date}</p>
-                    <img src={`http://openweathermap.org/img/wn/${el.icon}@2x.png`} />
-                    <p>weather: {el.description}</p>
-                    <p>temp_min: {el.temp_min}</p>
-                    <p>temp_max: {el.temp_max}</p>
-                    <p>humidity: {el.humidity}</p>
-                    </div>
+					<WeatherCard el={el} />
                     )}
+					</div>
 				</div>
+				</>
             )}
-		</div>
+		</>
 	);
 };
 

@@ -1,3 +1,27 @@
 .App {
 	text-align: center;
+	padding: 5em 2em;
+}
+.weatherCard{
+	width: fit-content;
+	min-width: 120px;
+	height: 100%;
+	font-size: .8rem;
+	padding: 1em 2em;
+	margin: .5em;
+	border: 1px rgb(201, 199, 199) solid;
+	box-shadow: 1px 1px 5px  rgb(104, 103, 103) ;
+}
+.weatherWeek{
+	display: flex;
+}
+.weekContainer{
+	display: flex;
+	width: 100%;
+	height: fit-content;
+	justify-content: center;
+}
+.city{
+	font-size: 2rem;
+	margin: 1em auto;
 }

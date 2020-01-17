@@ -5,7 +5,7 @@ import WeatherWeek from './components/WeatherWeek'
 const App = ()=> {
   
 return(
-  <div>App.js
+  <div className="App">
     <WeatherWeek id={2988507} /> 
   </div>
   
