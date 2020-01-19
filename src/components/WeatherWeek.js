@@ -28,7 +28,7 @@ const WeatherWeek = ({ id }) => {
 			setIsLoading(false);
 		}
 	};
-	console.log(data)
+	//console.log(data)
     // fetching data for today
     const fetchingTodayData = async () => {
 		try {
@@ -58,7 +58,7 @@ const WeatherWeek = ({ id }) => {
 		data.map((el) => min.push(Math.round(el.main.temp_min)));
 		data.map((el) => max.push(Math.round(el.main.temp_max)));
         data.map((el) => humidity.push(el.main.humidity));
-        
+        const newWeek = [];
 		for (let i = 0; i < 4; i++) {
 			// Storing data in 5 objects, 1 object per day
 			let temp_min = min.slice(i * n + tmr, i * n + tmr + n).sort((a, b) => a - b);
@@ -76,16 +76,16 @@ const WeatherWeek = ({ id }) => {
 				temp_max: Math.round(temp_max[0]),
 				humidity: Math.round(hum /len) // average humidity for the day
 			};
-			const newWeek = week;
+			
 			newWeek.push(day);
 			setWeek(newWeek);
 		}
 	};
-console.log(week)
+//console.log(week)
 	useEffect(() => {
         fetchingData();
         fetchingTodayData();
-	}, []);
+	}, [id]);
 
 	useEffect(
 		() => {
@@ -100,7 +100,7 @@ console.log(week)
 		<>
 			{isLoading ? null : (
 				<>
-				<div className="city">{city}</div>
+				
 				<WeatherMainCard date={selected} data={data} />
                 <div className="weatherWeek">
 				<div className="weekContainer">

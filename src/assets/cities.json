@@ -1,0 +1,110 @@
+[
+	{
+		"id": 6455259,
+		"name": "Paris",
+		"country": "FR",
+		"coord": {
+			"lon": 2.35236,
+			"lat": 48.856461
+		}
+	},
+	{
+		"id": 6454573,
+		"name": "Lyon",
+		"country": "FR",
+		"coord": {
+			"lon": 4.83107,
+			"lat": 45.7686
+		}
+	},
+	{
+		"id": 6454034,
+		"name": "Montpellier",
+		"country": "FR",
+		"coord": {
+			"lon": 3.8771,
+			"lat": 43.611301
+		}
+	},
+	{
+		"id": 6453974,
+		"name": "Toulouse",
+		"country": "FR",
+		"coord": {
+			"lon": 1.44367,
+			"lat": 43.604259
+		}
+	},
+	{
+		"id": 6454414,
+		"name": "Lille",
+		"country": "FR",
+		"coord": {
+			"lon": 3.06667,
+			"lat": 50.633331
+		}
+	},
+	{
+		"id": 3037854,
+		"name": "Amiens",
+		"country": "FR",
+		"coord": {
+			"lon": 2.3,
+			"lat": 49.900002
+		}
+	},
+	{
+		"id": 2973783,
+		"name": "Strasbourg",
+		"country": "FR",
+		"coord": {
+			"lon": 7.74296,
+			"lat": 48.58342
+		}
+	},
+	{
+		"id": 2989317,
+		"name": "Orleans",
+		"country": "FR",
+		"coord": {
+			"lon": 1.90389,
+			"lat": 47.902889
+		}
+	},
+	{
+		"id": 6447838,
+		"name": "Besançon",
+		"country": "FR",
+		"coord": {
+			"lon": 6.03333,
+			"lat": 47.25
+		}
+	},
+	{
+		"id": 3014728,
+		"name": "Grenoble",
+		"country": "FR",
+		"coord": {
+			"lon": 5.71667,
+			"lat": 45.166672
+		}
+	},
+	{
+		"id": 3024643,
+		"name": "Clermont",
+		"country": "FR",
+		"coord": {
+			"lon": 2.4,
+			"lat": 49.383331
+		}
+	},
+	{
+		"id": 2990969,
+		"name": "Nantes",
+		"country": "FR",
+		"coord": {
+			"lon": -1.55336,
+			"lat": 47.217251
+		}
+	}
+]
